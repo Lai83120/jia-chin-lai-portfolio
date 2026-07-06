@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賴加欽 LAI JIA CHIN — Portfolio</title>
+<meta name="description" content="賴加欽 Lai Jia Chin — 品牌、視覺、數位設計作品集">
+<meta property="og:title" content="賴加欽 LAI JIA CHIN — Portfolio">
+<meta property="og:description" content="品牌、視覺、數位設計作品集">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#ffffff;}
+  *{box-sizing:border-box;}
+  ::selection{background:#fa491c;color:#fff;}
+  @media (pointer:fine){*{cursor:none !important;}}
+  @media (pointer:coarse){#cc-cursor{display:none !important;}}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  :focus-visible{outline:2px solid #fa491c; outline-offset:2px;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes growX{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  @keyframes growY{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+  @keyframes pBleed{from{opacity:0;transform:translateX(60px);}to{opacity:1;transform:translateX(0);}}
+  @keyframes spinRing{from{transform:translate(-50%,-50%) rotate(-9deg) scale(.6);opacity:0;}to{transform:translate(-50%,-50%) rotate(-9deg) scale(1);opacity:1;}}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+  #works-rail::-webkit-scrollbar{height:0;}
+
+  /* ---- light-touch mobile safety net (desktop layout/logic kept as-is) ---- */
+  @media (max-width:860px){
+    .nav-cat, .nav-divider{ display:none !important; }
+    .hero-bleed-p{ font-size:60vh !important; }
+    .hero-badge{ transform:scale(.72); }
+    .hero-name-left{ font-size:22px !important; letter-spacing:.18em !important; }
+    .hero-year{ font-size:40px !important; }
+    .project-grid{ grid-template-columns:1fr !important; }
+    .project-meta{ position:relative !important; top:auto !important; }
+    .contact-grid{ grid-template-columns:1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cc-cursor" style="position:fixed; left:0; top:0; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%; background:#fa491c; pointer-events:none; z-index:9999; transition:width .22s cubic-bezier(.2,.8,.2,1),height .22s cubic-bezier(.2,.8,.2,1),background .22s, margin .22s; display:flex; align-items:center; justify-content:center;">
+    <span id="cc-label" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; color:#fff; opacity:0; white-space:nowrap; transition:opacity .2s;"></span>
+  </div>
+
+  <div style="position:relative; min-height:100vh; background:#ffffff; color:#0e0e0e; font-family:'Noto Sans TC','Helvetica Neue',Helvetica,Arial,sans-serif; overflow-x:hidden;">
+    <div id="app"></div>
+  </div>
+
+<script>
+/* =========================================================
+   內容資料區 — 想換文字或圖片,改這裡就好
+   圖片只要把對應檔名的圖放進同層的 assets/ 資料夾即可,
+   找不到圖片時會自動顯示「圖片待補」的提示方塊,不會壞版。
+   ========================================================= */
+const PROJECTS = [
+  { id:'hermes', cat:'visual', no:'01', initial:'V',
+    titleZh:`君邑建設 中壢體育園區`, titleEn:`Hermes Towers`,
+    subZh:`提案主視覺`, subEn:`Hermes Towers`,
+    client:'君邑建設', year:'2026', tagZh:`提案主視覺`, tagEn:`Key Visual`,
+    bg:'#ffffff', cover:'assets/260409君邑提案製作物-04.jpg', fit:'cover',
+    descZh:`以「皇家絲綢的流動藝術」為核心，選用象徵極致尊榮與能量的愛馬仕橘與燦金。絲綢般滑順、富有層次的光澤曲線，象徵建築工藝的雋永與高雅的生活品味，中央古典優雅的四瓣花徽章更強化了古典名流的血統，氣勢磅礴。`,
+    descEn:`Flowing orange silk and a gold emblem express the prestige and motion of the Zhongli sports-park case — the visual spine and identity of the pitch.`,
+    gallery:[
+      {src:'assets/silk.png', bg:'#ffffff', fit:'cover', capZh:`以流動的橘色絲綢與金色家徽,傳達中壢體育園區個案的尊榮與律動;建立整體提案的視覺主軸與識別語彙。`, capEn:`Key visual · silk motion`},
+      {src:'assets/截圖 2026-07-03 晚上9.56.29.jpg', bg:'#ffffff', fit:'cover', capZh:`標準字/標準色設定`, capEn:`Gold emblem`},
+      {src:'assets/vd-hermes-emblem.png', bg:'#ffffff', fit:'cover', capZh:`個案粉絲專頁建立及規劃`, capEn:`Gold emblem`},
+      {src:'assets/vd-hermes-arch.png', bg:'#ffffff', fit:'cover', capZh:`戶外製作物-POP`, capEn:`Identity imagery`},
+      {src:'assets/260409君邑提案製作物-12.jpg', bg:'##ffffff', fit:'cover', capZh:`個案官網網頁UI/UX設計規劃`, capEn:`Identity imagery`},
+      {src:'assets/260409君邑提案製作物-11.jpg', bg:'#ffffff', fit:'cover', capZh:`平面製作物`, capEn:`Identity imagery`},
+      {src:'assets/260409君邑提案製作物-18.jpg', bg:'#ffffff', fit:'cover', capZh:`戶外製作物-旗幟設計`, capEn:`Identity imagery`},
+    ]
+  },
+  { id:'lixin', cat:'visual', no:'02', initial:'V',
+    titleZh:`立信鉑玉`, titleEn:`Lixin Platinum Jade`,
+    subZh:`立信機構 二重提案`, subEn:`Lixin · Erchong`,
+    client:'立信機構', year:'2026', tagZh:`視覺・延伸製作`, tagEn:`Visual / Collateral`,
+    bg:'#f4efe9', cover:'assets/截圖 2026-07-03 晚上9.32.36.jpg', fit:'cover',
+    descZh:`以「晨曦漸層」為核心視覺，將天空從靜謐紫、溫暖橘到沉穩紅的漸變完美融合，象徵城市的甦醒與經典的永恆。搭配尊貴的金色現代幾何標誌，傳遞出「城市風華，百年一遇」的稀缺性與非凡氣度，將住宅提升至典藏藝術品的境界。`,
+    descEn:`A dusk gradient and restrained gold lettering build a quietly luxurious residence character, extended across proposal collateral.`,
+    gallery:[
+      {src:'assets/251030立信三重案-04.jpg', bg:'#ffffff', fit:'cover', capZh:`主視覺 Key Visual`, capEn:`Key visual`},
+       {src:'assets/截圖 2026-07-03 晚上9.56.43.jpg', bg:'#ffffff', fit:'cover', capZh:`標準字/標準色設定`, capEn:`Key visual`},
+       {src:'assets/DPOP.jpg', bg:'#ffffff', fit:'cover', capZh:`戶外 / POP`, capEn:`Key visual`},
+       {src:'assets/截圖 2026-07-01 晚上9.42.09.jpg', bg:'#ffffff', fit:'cover', capZh:`戶外 / 捷運站燈箱廣告`, capEn:`Identity imagery`},
+       {src:'assets/截圖 2026-07-01 晚上9.44.16.jpg', bg:'#ffffff', fit:'cover', capZh:`個案官網規劃/響應式網頁設計`, capEn:`Identity imagery`},
+    ]
+  },
+  { id:'lidu', cat:'visual', no:'03', initial:'V',
+    titleZh:`天母靜界`, titleEn:`Tianmu Serenity`,
+    subZh:`利都建設 北投案`, subEn:`Lidu · Beitou`,
+    client:'利都建設', year:'2026', tagZh:`延生平面、網路製作物`, tagEn:`OOH Billboard`,
+    bg:'#d8dde0', cover:'assets/截圖 2026-07-03 晚上9.37.39.jpg', fit:'cover',
+    descZh:`以綠意與留白凸顯北投靜謐生活的訴求，提案製作物延伸。`,
+    descEn:`Large-format outdoor boards use greenery and white space to voice a calm Beitou lifestyle.`,
+    gallery:[
+      {src:'assets/vd-lidu-billboard.png', bg:'#bcd0e0', fit:'cover', capZh:`戶外看板 POP`, capEn:`Outdoor billboard`},
+      {src:'assets/vd-lidu-cards.png', bg:'#eef1ee', fit:'cover', capZh:`文宣與名片 Print`, capEn:`Brochure & cards`},
+      {src:'assets/vd-lidu-web.png', bg:'#e9ebec', fit:'cover', capZh:`個案粉絲專頁Banner Facebook Banner`, capEn:`Project website`},
+      {src:'assets/vd-ww-web.png', bg:'#e9ebec', fit:'cover', capZh:`個案官網UI/UX設設計 Website`, capEn:`Project website`},
+    ]
+  },
+   { id:'wellbeing', cat:'visual', no:'04', initial:'V',
+    titleZh:`良茂城里院 WELL BEING`, titleEn:`WELL BEING`,
+    subZh:`良茂建設 體育園區案`, subEn:`房地產個案提案`,
+    client:'良茂建設 體育園區案', year:'2026', tagZh:`房地產提案`, tagEn:`Digital Ad`,
+    bg:'#eef0ee', cover:'assets/截圖 2026-07-03 晚上11.57.26.png', fit:'cover',
+    descZh:`「以「植感生態與身心療癒」為出發點。樸實的仿手感紙紋底色襯托出飛鳥、苔蘚與繁花的細緻生態，搭配溫潤的木質調標準字與現代簡約金色徽章，完美體現「WELL-BEING」與自然共生的純淨生活哲學，帶給觀者心靈的平靜。`,
+    descEn:`A web banner pitching "city-condo price, villa living" — contrast-led message with a green lifestyle cue.`,
+    gallery:[
+      {src:'assets/260514良茂城里院-FB封面_封面.jpg', bg:'#eef0ee', fit:'cover', capZh:`個案臉書 Banner`, capEn:`Web banner`},
+      {src:'assets/未命名-1-04.jpg', bg:'#eef0ee', fit:'cover', capZh:`個案臉書貼文`, capEn:`Web banner`},
+      {src:'assets/截圖 2026-07-03 晚上11.39.37.png', bg:'#eef0ee', fit:'cover', capZh:`個案臉書貼文`, capEn:`Web banner`},
+      {src:'assets/未命名-1-02.jpg', bg:'#eef0ee', fit:'cover', capZh:`個案臉書貼文`, capEn:`Web banner`},
+    ]
+  },
+  { id:'gift', cat:'branding', no:'05', initial:'V',
+    titleZh:`禮盒包裝設計`, titleEn:`Gift Box Packaging`,
+    subZh:`節慶禮盒`, subEn:`Festive Gift Set`,
+    client:'包裝設計', year:'2022', tagZh:`包裝設計`, tagEn:`Packaging`,
+    bg:'#efe7df', cover:'assets/ChatGPT Image 2026年7月3日 下午10_08_31.png', fit:'cover',
+    descZh:`品牌No Chewing Allowed新年禮盒包裝設計，融合法式頂級工藝與東方新年節慶。大面積的東方正紅展現節慶奢華，中央的鏤空金黃暖陽巧妙勾勒出優雅的虎斑紋路與微瞇的虎眼，搭配燙金細線與落下的松露巧克力剪影，既保有法式的洗鍊，又充滿奢華的年節儀式感。`,
+    descEn:`Red-and-gold with foil detailing creates a collectible festive gift-box series.`,
+    gallery:[
+      {src:'assets/ChatGPT Image 2026年7月3日 下午10_08_31.png', bg:'#efe7df', fit:'cover', capZh:`禮盒系列 Series`, capEn:`Gift box series`},
+      {src:'assets/ChatGPT Image 2026年7月3日 下午10_20_04.png', bg:'#efe7df', fit:'cover', capZh:`禮盒系列 Series`, capEn:`Gift box series`},
+      {src:'assets/ChatGPT Image 2026年7月3日 下午10_18_07.png', bg:'#efe7df', fit:'cover', capZh:`禮盒系列 Series`, capEn:`Gift box series`},
+    ]
+  },
+  { id:'totomoma', cat:'branding', no:'06', initial:'B',
+    titleZh:`好蒔生活 TOTO MOMA CIS設計`, titleEn:`TOTO MOMA`,
+    subZh:`煙波飯店 新竹商場`, subEn:`Lakeshore · Hsinchu`,
+    client:'品牌設計', year:'2026', tagZh:`品牌規劃`, tagEn:`Branding`,
+    bg:'#ffffff', cover:'assets/截圖 2026-05-31 清晨6.07.43.png', fit:'cover',
+    descZh:`打破傳統框架，採用大膽的幾何圓形與高對比的綠、黃色調，將自然意象轉化為極具衝擊力的現代符號。交錯倒置的英文幾何字體，營造出活潑且具律動感的視覺節奏，呼應「好蒔生活」自然、永續且充滿趣味的日常美學。為新竹煙波商場打造「好蒔生活」品牌,輕快現代的標準字傳遞日常美好的生活提案。`,
+    descEn:`A new brand for the Lakeshore Hsinchu mall — a brisk, modern wordmark voicing an everyday-good lifestyle.`,
+    gallery:[
+      {src:'assets/截圖 2026-05-31 清晨6.07.31.png', bg:'#ffffff', fit:'contain', capZh:`標準字 Logotype`, capEn:`Logotype`},
+      {src:'assets/截圖 2026-05-31 清晨6.09.55.png', bg:'#ffffff', fit:'contain', capZh:`標準字使用規範 Logotype`, capEn:`Logotype`},
+      {src:'assets/截圖 2026-07-03 晚上10.32.59.png', bg:'#ffffff', fit:'contain', capZh:`視覺形象海報`, capEn:`Logotype`},
+    ]
+  },
+  { id:'wuping', cat:'branding', no:'07', initial:'B',
+    titleZh:`五坪就醉 居酒屋`, titleEn:`Wuping Izakaya`,
+    subZh:`品牌識別規劃`, subEn:`Izakaya Identity`,
+    client:'品牌設計', year:'2022', tagZh:`品牌＋吉祥物`, tagEn:`Brand / Mascot`,
+    bg:'#ffffff', cover:'assets/截圖 2026-07-03 晚上10.35.06.png', fit:'cover',
+    descZh:`房式兄弟聯手出擊，委託設計復古日式居酒屋識別,毛筆感標準字搭配微醺吉祥物,呼應在只有五坪的小店中「五坪就醉」的親暱小店氛圍。`,
+    descEn:`A retro izakaya identity — brushy logotype with a tipsy mascot, echoing the cosy "drunk in five ping" vibe.`,
+    gallery:[
+      {src:'assets/五坪就醉logo_工作區域 1 複本 5.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌標準字設計`, capEn:`Storefront`},
+      {src:'assets/五坪就醉logo-06.jpg', bg:'#ffffff', fit:'contain', capZh:`品牌標準字使用規範`, capEn:`Brand logo`},
+      {src:'assets/截圖 2026-07-03 晚上10.46.28.png', bg:'#ffffff', fit:'contain', capZh:`店招設計`, capEn:`Brand logo`},
+      {src:'assets/240409FB封面_工作區域 20.jpg', bg:'##ffffff', fit:'contain', capZh:`吉祥物插畫設計`, capEn:`Brand logo`},
+      {src:'assets/五坪就醉logo-18.jpg', bg:'##ffffff', fit:'contain', capZh:`網路媒體貼文`, capEn:`Brand logo`},
+    ]
+  },
+  { id:'yiban', cat:'branding', no:'08', initial:'B',
+    titleZh:`醫伴人力公司`, titleEn:`Yi-Ban Staffing`,
+    subZh:`品牌＋吉祥物設定`, subEn:`Brand & Mascot`,
+    client:'品牌設計', year:'2025', tagZh:`品牌規劃`, tagEn:`Branding`,
+    bg:'#ffffff', cover:'assets/截圖 2026-07-03 晚上11.16.58.png', fit:'contain',
+    descZh:`以圓潤的色塊吉祥物,柔化人力派遣的專業冷感,建立溫暖、可靠的品牌個性。`,
+    descEn:`Rounded blob mascots warm up the clinical feel of staffing services, building a friendly, dependable brand.`,
+    gallery:[
+      {src:'assets/250520醫伴人力公司-logo_工作區域 1 複本 11.jpg', bg:'#ffffff', fit:'contain', capZh:`品牌標準字使用規範`, capEn:`Mascots`},
+      {src:'assets/250520醫伴人力公司-logo_工作區域 1 複本 16.jpg', bg:'#ffffff', fit:'contain', capZh:`吉祥物設計 Mascots`, capEn:`Mascots`},
+    ]
+  },
+  { id:'社群貼文', cat:'digital', no:'09', initial:'D',
+    titleZh:`數位網路媒體設計`, titleEn:`G12 Residence`,
+    subZh:`房地產社群貼文`, subEn:`Real-estate Social`,
+    client:'網路媒體設計', year:'2025-2026', tagZh:`社群貼文`, tagEn:`Social Post`,
+    bg:'#e9ebec', cover:'assets/截圖 2026-07-03 晚上11.43.04.png', fit:'cover',
+    descZh:`房地產網路媒體個案規劃。`,
+    descEn:`A Facebook post series built on a "metro prosperity belt" message — clear hierarchy, eye-catching visuals.`,
+    gallery:[
+      {src:'assets/260525醞釀貼文.jpg', bg:'#ffffff', fit:'contain', capZh:`甘霖建設-個案臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260525醞釀貼文-02.png', bg:'#ffffff', fit:'contain', capZh:`甘霖建設-個案臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260527_工作區域 1.jpg', bg:'#ffffff', fit:'contain', capZh:`璟都新世界-個案臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260423陸昇G9湛-貼文.jpg', bg:'#ffffff', fit:'contain', capZh:`陸昇G9湛-個案臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260529.jpg', bg:'#ffffff', fit:'contain', capZh:`德億名邸-臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/251105賞屋吃火鍋貼文.jpg', bg:'#ffffff', fit:'contain', capZh:`德億名邸-活動臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260204富宇-扭蛋-01.jpg', bg:'#ffffff', fit:'contain', capZh:`富宇建設-活動臉書貼文 FB Post`, capEn:`Facebook post`},
+      {src:'assets/260204富宇-扭蛋-02.jpg', bg:'#ffffff', fit:'contain', capZh:`富宇建設-活動EDM`, capEn:`Facebook post`},
+      {src:'assets/260226春酒邀請函EDM.jpg', bg:'#ffffff', fit:'contain', capZh:`富宇建設-春酒邀請EDM `, capEn:`Facebook post`},
+      {src:'assets/260528盛德誠-下午茶EDM.jpg', bg:'#ffffff', fit:'contain', capZh:`盛德誠-活動EDM `, capEn:`Facebook post`},
+      {src:'assets/260416勝旺家-活動EDM.jpg', bg:'#ffffff', fit:'contain', capZh:`勝旺家-活動EDM `, capEn:`Facebook post`},
+    ]
+  },
+  { id:'brandbook', cat:'marketing', no:'10', initial:'M',
+    titleZh:`平面製作印刷物`, titleEn:`Real-estate Brand Book`,
+    subZh:`平面製作物編排製作`, subEn:`Brand Book`,
+    client:'印刷/平面製作物', year:'2025', tagZh:`平面製作物`, tagEn:``,
+    bg:'#ffffff', cover:'assets/558897373_1226648536147685_8559077810096727478_n.jpg', fit:'cover',
+    descZh:`整合個案精神、作為對外溝通的核心文件。平面製作印刷物的設計核心是「觸覺延伸」與「停留的藝術」，數位追求快速點擊，平面追求精緻收藏。`,
+    descEn:`A real-estate brand book weaving the project spirit, landscape and lifestyle into a core communication piece.`,
+    gallery:[
+      {src:'assets/A1.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌書 Brand Book`, capEn:`Brand book`},
+      {src:'assets/A2.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌書 Brand Book`, capEn:`Brand book`},
+      {src:'assets/A52.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌書 Brand Book`, capEn:`Brand book`},
+      {src:'assets/558897373_1226648536147685_8559077810096727478_n.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌書 Brand Book`, capEn:`Brand book`},
+      {src:'assets/558889286_1226648642814341_5510187960972869495_n.jpg', bg:'#ffffff', fit:'cover', capZh:`品牌書 Brand Book`, capEn:`Brand book`},
+      {src:'assets/截圖 2026-06-06 晚上11.00.02.png', bg:'#ffffff', fit:'cover', capZh:`房地產個案-名片設計`, capEn:`Brand book`},
+      {src:'assets/截圖 2026-06-06 晚上11.00.29.png', bg:'#ffffff', fit:'cover', capZh:`房地產個案-提袋設計`, capEn:`Brand book`},
+      {src:'assets/截圖 2026-06-06 晚上11.00.10.png', bg:'#ffffff', fit:'cover', capZh:`房地產個案-合約書封面設計`, capEn:`Brand book`},
+      {src:'assets/716016360_1428826619263208_8979915500132272986_n.jpg', bg:'#ffffff', fit:'cover', capZh:`廣告派發海報 Poster`, capEn:`Brand book`},
+      {src:'assets/563608951_1239659144846624_4553195179511081108_n.jpg', bg:'#ffffff', fit:'cover', capZh:`廣告派發海報 Poster`, capEn:`Brand book`},
+    ]
+  },
+  { id:'savor', cat:'marketing', no:'11', initial:'M',
+    titleZh:`接待會館空間包裝規劃`, titleEn:`SAVOR Sales Center`,
+    subZh:`接待會館包裝規劃`, subEn:`Sales-center Packaging`,
+    client:'銷售中心包裝與銷售空間規劃', year:'2025-2026', tagZh:`接待會館`, tagEn:`Sales Center`,
+    bg:'#ffffff', cover:'assets/594058407_1280128714133000_4515148974349616721_n.jpg', fit:'cover',
+    descZh:`以銷售與溝通為主要目的，包裝企劃思維及個案視覺為主題的接待會館包裝,從入口意象到動線,營造品牌個性看屋體驗。`,
+    descEn:`An "art & heart" sales-center concept — from entrance imagery to flow, crafting a boutique viewing experience.`,
+    gallery:[
+      {src:'assets/594726592_1280128747466330_5015704379013642487_n.jpg', bg:'#0e0e0e', fit:'cover', capZh:`接待中心包裝 Entrance`, capEn:`Entrance imagery`},
+      {src:'assets/594058407_1280128714133000_4515148974349616721_n.jpg', bg:'#ffffff', fit:'cover', capZh:`接待中心包裝 Entrance`, capEn:`Entrance imagery`},
+      {src:'assets/594963128_1280128787466326_7340768447756318769_n.jpg', bg:'#ffffff', fit:'cover', capZh:`接待中心包裝 Entrance`, capEn:`Entrance imagery`},
+      {src:'assets/591933630_1280128894132982_8417212637590739407_n.jpg', bg:'#ffffff', fit:'cover', capZh:`接待中心包裝 Entrance`, capEn:`Entrance imagery`},
+      {src:'assets/594076577_1280128850799653_7922034945049015428_n.jpg', bg:'#ffffff', fit:'cover', capZh:`接待中心包裝 Entrance`, capEn:`Entrance imagery`},
+    ]
+  },
+];
+
+const CATS_META = [
+  {id:'all', en:'ALL', zh:'全部'},
+  {id:'visual', en:'VISUAL', zh:'視覺'},
+  {id:'branding', en:'BRANDING', zh:'品牌'},
+  {id:'digital', en:'DIGITAL', zh:'數位'},
+  {id:'marketing', en:'MARKETING', zh:'行銷'},
+];
+
+/* =========================================================
+   狀態與小工具
+   ========================================================= */
+const state = { route:'home', lang:'zh', cat:'all', cur:'hermes' };
+
+function L(zh, en){ return state.lang==='zh' ? zh : en; }
+
+function catFullLabel(id){
+  return ({
+    visual:L('視覺設計','Visual Design'),
+    branding:L('品牌設計','Branding'),
+    digital:L('數位設計','Digital Design'),
+    marketing:L('行銷規劃','Marketing Plan'),
+  })[id] || '';
+}
+
+function localize(p){
+  return Object.assign({}, p, {
+    title: L(p.titleZh, p.titleEn),
+    subtitle: L(p.subZh||'', p.subEn||''),
+    desc: L(p.descZh, p.descEn),
+    tag: L(p.tagZh, p.tagEn),
+    catLabel: catFullLabel(p.cat),
+  });
+}
+
+function hov(label){
+  return `data-hov="${label}" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"`;
+}
+
+function coverImg(src, fit, label){
+  return `<img src="${src}" alt="" style="width:100%; height:100%; object-fit:${fit}; transition:transform .9s cubic-bezier(.2,.8,.2,1);" data-img onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; padding:10px; background:repeating-linear-gradient(135deg,#f6f4ef,#f6f4ef 11px,#efece5 11px,#efece5 22px);">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:#aaa49a;">圖片待補<br>${label}</span>
+    </div>`;
+}
+
+function galleryItem(g){
+  if(g.ph){
+    return `<figure style="margin:0;">
+      <div style="aspect-ratio:16/10; border:1px solid rgba(14,14,14,.16); background:repeating-linear-gradient(135deg,#f6f4ef,#f6f4ef 11px,#efece5 11px,#efece5 22px); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; color:#aaa49a;">${g.ph}</span>
+      </div>
+      <figcaption style="margin-top:9px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:#86837a;">${g.ph}</figcaption>
+    </figure>`;
+  }
+  const cap = L(g.capZh, g.capEn);
+  return `<figure style="margin:0;">
+    <div style="position:relative; background:${g.bg}; border:1px solid rgba(14,14,14,.12); overflow:hidden;">
+      <img src="${g.src}" alt="" style="width:100%; display:block; object-fit:${g.fit}; max-height:78vh;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; padding:10px; background:repeating-linear-gradient(135deg,#f6f4ef,#f6f4ef 11px,#efece5 11px,#efece5 22px);">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:#aaa49a;">圖片待補<br>${cap}</span>
+      </div>
+    </div>
+    <figcaption style="margin-top:9px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:#86837a;">${cap}</figcaption>
+  </figure>`;
+}
+
+/* =========================================================
+   各區塊渲染
+   ========================================================= */
+function renderNav(){
+  const r = state.route;
+  const langLabel = L('EN','中');
+  return `
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:22px 40px; background:linear-gradient(#ffffff 55%, rgba(255,255,255,0));">
+    <div ${hov('HOME')} onclick="go('home')" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:18px; letter-spacing:.01em; display:flex; align-items:center; gap:2px; white-space:nowrap; cursor:pointer;">LAI JIA CHIN<span style="color:#fa491c;">.</span></div>
+    <div style="display:flex; align-items:center; gap:22px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.16em;">
+      <span ${hov('')} onclick="go('about')" style="color:${r==='about'?'#fa491c':'#0e0e0e'}; cursor:pointer;">ABOUT</span>
+      <span ${hov('')} onclick="goWorksAll()" style="color:${(r==='works'||r==='project')?'#fa491c':'#0e0e0e'}; cursor:pointer;">WORKS</span>
+      <span class="nav-divider" style="width:1px; height:12px; background:#d9d4cc;"></span>
+      <span class="nav-cat" ${hov('')} onclick="setCat('visual')" style="color:#7a766e; cursor:pointer;">VISUAL</span>
+      <span class="nav-cat" ${hov('')} onclick="setCat('branding')" style="color:#7a766e; cursor:pointer;">BRANDING</span>
+      <span class="nav-cat" ${hov('')} onclick="setCat('digital')" style="color:#7a766e; cursor:pointer;">DIGITAL</span>
+      <span class="nav-cat" ${hov('')} onclick="setCat('marketing')" style="color:#7a766e; cursor:pointer;">MARKETING</span>
+      <span class="nav-divider" style="width:1px; height:12px; background:#d9d4cc;"></span>
+      <span ${hov('')} onclick="go('contact')" style="color:${r==='contact'?'#fa491c':'#0e0e0e'}; cursor:pointer;">CONTACT</span>
+      <span ${hov('')} onclick="toggleLang()" style="padding:2px 9px; border:1px solid #0e0e0e; border-radius:20px; font-weight:600; cursor:pointer;">${langLabel}</span>
+    </div>
+  </nav>`;
+}
+
+function renderHome(){
+  return `
+  <section data-screen-label="Home" style="position:relative; height:100vh; min-height:660px; overflow:hidden;">
+    <div style="position:absolute; left:6%; top:0; bottom:0; width:1px; background:rgba(14,14,14,.16); transform-origin:top; animation:growY 1s .1s both;"></div>
+    <div style="position:absolute; left:62%; top:0; bottom:0; width:1px; background:rgba(14,14,14,.16); transform-origin:top; animation:growY 1s .25s both;"></div>
+    <div style="position:absolute; right:11%; top:0; bottom:0; width:1px; background:rgba(14,14,14,.16); transform-origin:top; animation:growY 1s .4s both;"></div>
+    <div style="position:absolute; left:0; right:0; top:25%; height:1px; background:rgba(14,14,14,.16); transform-origin:left; animation:growX 1.1s .2s both;"></div>
+    <div style="position:absolute; left:0; right:0; top:78%; height:1px; background:rgba(14,14,14,.16); transform-origin:left; animation:growX 1.1s .35s both;"></div>
+    <div style="position:absolute; left:0; right:0; bottom:8%; height:1px; background:rgba(14,14,14,.16); transform-origin:left; animation:growX 1.1s .5s both;"></div>
+
+    <div class="hero-bleed-p" style="position:absolute; right:-3%; top:-16%; font-family:'Outfit',sans-serif; font-weight:700; font-size:140vh; line-height:.8; color:#fa491c; z-index:1; animation:pBleed 1.1s .15s both; user-select:none;">P</div>
+
+    <div class="hero-badge" style="position:absolute; right:18%; top:39%; transform:translateY(-50%); z-index:3; text-align:center; animation:fadeIn .9s .5s both;">
+      <div style="position:relative; display:inline-block; padding:6px 40px;">
+        <div style="position:absolute; left:50%; top:50%; width:128%; height:62%; border:2px solid #fa491c; border-radius:50%; transform:translate(-50%,-50%) rotate(-9deg); animation:spinRing 1s .7s both;"></div>
+        <div style="font-family:'Outfit',sans-serif; font-weight:600; font-size:74px; line-height:.92; letter-spacing:.01em; position:relative;">PORT<br>FOLIO</div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:54px; margin-top:14px; font-family:'Outfit',sans-serif; font-weight:400; font-size:22px; letter-spacing:.04em; white-space:nowrap;"><span>LAI</span><span>JIA CHIN</span></div>
+    </div>
+
+    <div style="position:absolute; left:8%; top:50%; transform:translateY(-50%); z-index:3; animation:fadeIn .9s .65s both;">
+      <div class="hero-name-left" style="font-size:34px; font-weight:500; letter-spacing:.34em; display:flex; align-items:center; gap:18px;">賴加欽<span style="color:#fa491c; font-weight:300; letter-spacing:0;">／</span>作品集</div>
+    </div>
+
+    <div style="position:absolute; left:8%; bottom:15%; z-index:3; font-family:'Outfit',sans-serif; font-weight:500; font-size:66px; letter-spacing:.01em; transform:skewX(-11deg); animation:fadeIn .9s .8s both; display:flex; align-items:center; gap:18px;" class="hero-year">2020<span style="display:inline-block; width:64px; height:2px; background:#0e0e0e; position:relative;"><span style="position:absolute; right:-2px; top:-4px; width:9px; height:9px; border-top:2px solid #0e0e0e; border-right:2px solid #0e0e0e; transform:rotate(45deg);"></span></span>2026</div>
+
+    <div style="position:absolute; left:8%; bottom:4.5%; z-index:3; display:flex; gap:30px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; animation:fadeIn 1s 1s both;">
+      <span><span style="color:#fa491c;">•</span> BRANDING</span>
+      <span><span style="color:#fa491c;">•</span> VISUAL DESIGN</span>
+      <span><span style="color:#fa491c;">•</span> DIGITAL DESIGN</span>
+      <span><span style="color:#fa491c;">•</span> CREATIVE STRATEGY</span>
+    </div>
+
+    <div ${hov('ENTER')} onclick="goWorksAll()" style="position:absolute; right:11%; bottom:8%; z-index:5; padding:18px 4px 0 26px; text-align:right; animation:fadeIn 1s 1.1s both; cursor:pointer;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.2em; color:#0e0e0e;">${L('進入作品 ENTER','ENTER WORKS')}</div>
+      <div style="font-family:'Outfit'; font-size:40px; font-weight:600; color:#fa491c; line-height:1; animation:blink 1.8s infinite;">↘</div>
+    </div>
+  </section>`;
+}
+
+function renderWorks(){
+  const all = PROJECTS.map(localize);
+  const visible = state.cat==='all' ? all : all.filter(p=>p.cat===state.cat);
+  const catsHtml = CATS_META.map(c=>{
+    const active = state.cat===c.id;
+    const count = c.id==='all' ? PROJECTS.length : PROJECTS.filter(p=>p.cat===c.id).length;
+    const label = L(c.zh, c.en);
+    return `<span ${hov('')} onclick="setCat('${c.id}')" style="padding:7px 13px; border:1px solid ${active?'#0e0e0e':'#d9d4cc'}; background:${active?'#0e0e0e':'transparent'}; color:${active?'#fff':'#3a3833'}; border-radius:20px; cursor:pointer;">${label} <span style="opacity:.5;">${String(count).padStart(2,'0')}</span></span>`;
+  }).join('');
+  const cardsHtml = visible.map(p=>`
+    <div ${hov('VIEW')} onclick="openProject('${p.id}')" style="flex:0 0 clamp(300px,30vw,440px); height:100%; border-right:1px solid rgba(14,14,14,.16); padding:30px 30px 34px; display:flex; flex-direction:column; position:relative; background:#fff; cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#86837a; margin-bottom:16px;">
+        <span style="color:#fa491c; font-weight:600;">${p.no}</span>
+        <span>${p.catLabel}</span>
+      </div>
+      <div style="flex:1; position:relative; overflow:hidden; background:${p.bg}; border:1px solid rgba(14,14,14,.10);">
+        ${coverImg(p.cover, p.fit, p.title)}
+      </div>
+      <div style="margin-top:18px;">
+        <div style="font-family:'Outfit'; font-weight:600; font-size:22px; line-height:1.15; letter-spacing:-.01em;">${p.title}</div>
+        <div style="display:flex; justify-content:space-between; margin-top:7px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#86837a;"><span>${p.client}</span><span>${p.year}</span></div>
+      </div>
+    </div>`).join('');
+  const worksTitle = state.cat==='all' ? L('全部作品','All Works') : catFullLabel(state.cat);
+  return `
+  <section data-screen-label="Works" style="position:relative; height:100vh; min-height:660px; display:flex; flex-direction:column; padding-top:84px; animation:fadeIn .5s both; overflow:hidden;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; padding:0 40px 22px; border-bottom:1px solid rgba(14,14,14,.16);">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.24em; color:#fa491c; margin-bottom:8px;">${L('作品 · 2020—2026','SELECTED WORKS · 2020—2026')}</div>
+        <h2 style="margin:0; font-family:'Outfit'; font-weight:700; font-size:40px; letter-spacing:-.02em;">${worksTitle}</h2>
+      </div>
+      <div style="display:flex; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.12em;">${catsHtml}</div>
+    </div>
+    <div id="works-rail" style="flex:1; display:flex; align-items:stretch; gap:0; overflow-x:auto; overflow-y:hidden; scroll-behavior:smooth;">
+      ${cardsHtml}
+      <div style="flex:0 0 320px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:#b8b4ac;">
+        <div style="font-family:'Outfit'; font-size:30px; font-weight:300; transform:skewX(-10deg);">END</div>
+        <div ${hov('')} onclick="go('contact')" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; color:#fa491c; border-bottom:1px solid #fa491c; padding-bottom:3px; cursor:pointer;">${L('聯絡我 →','GET IN TOUCH →')}</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; padding:16px 40px; border-top:1px solid rgba(14,14,14,.16); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#86837a;">
+      <span>${L('← 拖曳 / 滾動瀏覽 →','← drag / scroll →')}</span>
+      <span style="flex:1; height:2px; background:#eceae4; position:relative; overflow:hidden;"><span id="works-prog" style="position:absolute; left:0; top:0; height:2px; width:14%; background:#fa491c;"></span></span>
+      <span>${L('共 '+String(visible.length).padStart(2,'0')+' 件', '01 — '+String(visible.length).padStart(2,'0'))}</span>
+    </div>
+  </section>`;
+}
+
+function renderProject(){
+  const order = PROJECTS.map(p=>p.id);
+  const ci = Math.max(0, order.indexOf(state.cur));
+  const cur = localize(PROJECTS[ci]);
+  const galleryHtml = (cur.gallery||[]).map(galleryItem).join('');
+  return `
+  <section data-screen-label="Project" style="position:relative; min-height:100vh; padding:104px 40px 80px; animation:fadeIn .5s both;">
+    <div style="position:absolute; right:-2%; top:40px; font-family:'Outfit'; font-weight:800; font-size:30vh; line-height:.8; color:#faf3ef; z-index:0; user-select:none;">${cur.initial}</div>
+    <div class="project-grid" style="position:relative; z-index:1; display:grid; grid-template-columns:380px 1fr; gap:56px; max-width:1320px; margin:0 auto;">
+      <div class="project-meta" style="position:sticky; top:104px; align-self:start;">
+        <div ${hov('')} onclick="go('works')" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:#86837a; margin-bottom:30px; display:inline-flex; gap:8px; cursor:pointer;">← ${L('返回作品','BACK TO WORKS')}</div>
+        <div style="display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; color:#fa491c; margin-bottom:14px;"><span style="font-weight:600;">${cur.no}</span><span style="color:#86837a;">${cur.catLabel}</span></div>
+        <h1 style="margin:0 0 6px; font-family:'Outfit'; font-weight:700; font-size:38px; line-height:1.08; letter-spacing:-.02em;">${cur.title}</h1>
+        <div style="font-family:'Outfit'; font-weight:300; font-size:18px; color:#86837a; margin-bottom:26px; transform:skewX(-8deg); transform-origin:left;">${cur.subtitle}</div>
+        <p style="font-size:15px; line-height:1.75; color:#3a3833; margin:0 0 30px;">${cur.desc}</p>
+        <div style="display:grid; grid-template-columns:auto 1fr; gap:10px 20px; font-family:'IBM Plex Mono',monospace; font-size:12px; padding-top:22px; border-top:1px solid rgba(14,14,14,.16);">
+          <span style="color:#a09d93;">CLIENT</span><span>${cur.client}</span>
+          <span style="color:#a09d93;">YEAR</span><span>${cur.year}</span>
+          <span style="color:#a09d93;">ROLE</span><span>${cur.tag}</span>
+        </div>
+        <div style="display:flex; gap:18px; margin-top:34px;">
+          <span ${hov('')} onclick="prevProject()" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; color:#0e0e0e; cursor:pointer;">← PREV</span>
+          <span ${hov('')} onclick="nextProject()" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; color:#fa491c; cursor:pointer;">NEXT →</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:22px;">
+        ${galleryHtml}
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderAbout(){
+  const aboutP1 = L(
+    `好的設計不只是讓畫面變得更好看，而是讓品牌與使用者之間的溝通變得更有效率。<br>
+
+     <br>我是賴加欽，具備近10年品牌整合、房地產廣告與數位設計經驗的資深視覺設計師。<br>
+     <br>[品牌整合策略]<br>品牌定位規劃、命名發想、CIS / VI 識別系統、品牌視覺策略、行銷企劃提案、市場分析、競品分析<br>
+     <br>[視覺設計]<br>建案主視覺規劃、接待中心空間包裝、展場設計、平面廣告設計、包裝設計、印刷製程管理<br>
+
+<br>[數位廣告設計]<br>Facebook 廣告素材、Google GDN、Banner Design、EDM 設計、UI Design、Landing Page<br>
+
+<br>[AI 與自動化]<br>ChatGPT、Midjourney、AI 影像生成、AI Workflow 規劃、自動化腳本開發、工作流程優化<br>
+
+<br>[設計工具]<br>Adobe Photoshop、Illustrator、InDesign、Premiere Pro<br>
+
+<br>[團隊管理]<br>設計團隊領導（4 人）、新人教育訓練、廣告邏輯傳承、提案方向主導、跨部門溝通整合<br>`,
+    `I am Chia-Chin Lai, a Senior Visual Designer with nearly 10 years of experience in brand integration, real estate advertising, and digital design. Proficient in Adobe Creative Suite, including Photoshop, Illustrator, and other industry-standard design tools, I have contributed to more than 30 brand integration projects and produced over 300 advertising and marketing assets throughout my career.
+In recent years, I have actively integrated AI technologies, automation tools, and workflow optimization strategies into the design process, helping teams improve production efficiency by approximately 30%.
+My expertise lies in managing the entire creative process—from market research, brand positioning, and visual strategy development to design execution. I excel at transforming business objectives into distinctive brand experiences that enhance market competitiveness and create lasting value.
+`
+  );
+  const aboutP2 = L(
+    ``,
+    `
+
+`
+  );
+  return `
+  <section data-screen-label="About" style="position:relative; min-height:100vh; padding:120px 40px 70px; animation:fadeIn .5s both; overflow:hidden;">
+    <div style="position:absolute; left:5%; top:14%; width:1px; bottom:6%; background:rgba(14,14,14,.14);"></div>
+    <div style="max-width:1200px; margin:0 auto; position:relative;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.26em; color:#fa491c; margin-bottom:24px;">ABOUT · 關於我</div>
+      <h1 style="margin:0; font-family:'Outfit'; font-weight:800; font-size:clamp(56px,9vw,120px); line-height:.94; letter-spacing:-.03em;">About &nbsp; me<span style="color:#fa491c;"></span></h1>
+      <div style="font-family:'Outfit'; font-weight:300; font-size:clamp(30px,5vw,62px); transform:skewX(-10deg); transform-origin:left; margin:6px 0 50px; color:#cfcabf;"> ✷ </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+        <div>
+          <p style="font-size:17px; line-height:1.85; color:#2a2824; margin:0 0 22px;">${aboutP1}</p>
+          <p style="font-size:15px; line-height:1.8; color:#55524c; margin:0;">${aboutP2}</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:#a09d93; margin-bottom:14px;">WHAT I DO</div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-top:1px solid rgba(14,14,14,.16);"><span style="font-family:'Outfit'; font-size:24px; font-weight:500;">Branding</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#86837a;">品牌設計</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-top:1px solid rgba(14,14,14,.16);"><span style="font-family:'Outfit'; font-size:24px; font-weight:500;">Visual Design</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#86837a;">視覺設計</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-top:1px solid rgba(14,14,14,.16);"><span style="font-family:'Outfit'; font-size:24px; font-weight:500;">Digital Design</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#86837a;">數位設計</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-top:1px solid rgba(14,14,14,.16); border-bottom:1px solid rgba(14,14,14,.16);"><span style="font-family:'Outfit'; font-size:24px; font-weight:500;">Creative Strategy</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#86837a;">行銷規劃</span></div>
+          <div style="margin-top:26px; font-family:'Outfit'; font-weight:500; font-size:40px; transform:skewX(-11deg); transform-origin:left;">2020 → 2026</div>
+          <div ${hov('')} onclick="goWorksAll()" style="margin-top:22px; align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:#fa491c; border-bottom:1px solid #fa491c; padding-bottom:3px; display:inline-block; cursor:pointer;">${L('看看作品 →','SEE THE WORK →')}</div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderContact(){
+  const contactSub = L(
+    `品牌、視覺、數位到接待中心行銷 — 從一個 logo 到一整個建案的對外溝通,都可以聊。`,
+    `From a single logo to a whole real-estate launch — branding, visual, digital and sales-center marketing. Let's make something.`
+  );
+  return `
+  <section data-screen-label="Contact" style="position:relative; min-height:100vh; padding:120px 40px 60px; animation:fadeIn .5s both; overflow:hidden; display:flex; flex-direction:column; justify-content:center;">
+    <div style="position:absolute; left:-3%; bottom:-14%; font-family:'Outfit'; font-weight:800; font-size:36vh; line-height:.8; color:#faf3ef; z-index:0; user-select:none;">LJC</div>
+    <div style="max-width:1200px; margin:0 auto; position:relative; z-index:1; width:100%;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.26em; color:#fa491c; margin-bottom:22px;">CONTACT · 聯絡</div>
+      <h1 style="margin:0 0 14px; font-family:'Outfit'; font-weight:800; font-size:clamp(54px,9vw,118px); line-height:.92; letter-spacing:-.03em;">${L('一起合作', `LET'S TALK`)}<span style="color:#fa491c;">.</span></h1>
+      <p style="font-size:16px; color:#55524c; max-width:520px; margin:0 0 52px; line-height:1.7;">${contactSub}</p>
+      <div class="contact-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(14,14,14,.16); border:1px solid rgba(14,14,14,.16);">
+        <a href="mailto:gmail.com" ${hov('MAIL')} style="background:#fff; padding:30px 28px; text-decoration:none; color:#0e0e0e;"><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#a09d93; margin-bottom:12px;">EMAIL</div><div style="font-family:'Outfit'; font-size:21px; font-weight:500;"><span>allenlai1994</span><span style="color:#fa491c;">@</span><span>gmail</span><span>.com</span></div></a>
+        <a href="https://instagram.com/allen_lai_" target="_blank" rel="noopener" ${hov('IG')} style="background:#fff; padding:30px 28px; text-decoration:none; color:#0e0e0e;"><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#a09d93; margin-bottom:12px;">INSTAGRAM</div><div style="font-family:'Outfit'; font-size:21px; font-weight:500;">@allen_lai_</div></a>
+        <a href="tel:+886981705203" ${hov('CALL')} style="background:#fff; padding:30px 28px; text-decoration:none; color:#0e0e0e;"><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#a09d93; margin-bottom:12px;">${L('電話','PHONE')}</div><div style="font-family:'Outfit'; font-size:21px; font-weight:500;">+886 981 705 203</div></a>
+      </div>
+      <div style="display:flex; gap:30px; margin-top:34px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; color:#86837a;">
+        <span><span style="color:#fa491c;">•</span> BRANDING</span><span><span style="color:#fa491c;">•</span> VISUAL</span><span><span style="color:#fa491c;">•</span> DIGITAL</span><span><span style="color:#fa491c;">•</span> STRATEGY</span>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* =========================================================
+   路由 / 狀態切換
+   ========================================================= */
+function render(){
+  const root = document.getElementById('app');
+  let body;
+  if(state.route==='home') body = renderHome();
+  else if(state.route==='works') body = renderWorks();
+  else if(state.route==='project') body = renderProject();
+  else if(state.route==='about') body = renderAbout();
+  else body = renderContact();
+  root.innerHTML = renderNav() + body;
+  if(state.route==='works'){ requestAnimationFrame(updateProgress); }
+}
+
+function go(route){
+  state.route = route;
+  render();
+  try{ window.scrollTo({top:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); }
+}
+function goWorksAll(){ state.route='works'; state.cat='all'; render(); }
+function setCat(cat){ state.route='works'; state.cat=cat; render(); }
+function openProject(id){ state.route='project'; state.cur=id; render(); window.scrollTo(0,0); }
+function prevProject(){
+  const order = PROJECTS.map(p=>p.id);
+  const ci = Math.max(0, order.indexOf(state.cur));
+  state.cur = order[(ci-1+order.length)%order.length];
+  state.route = 'project'; render(); window.scrollTo(0,0);
+}
+function nextProject(){
+  const order = PROJECTS.map(p=>p.id);
+  const ci = Math.max(0, order.indexOf(state.cur));
+  state.cur = order[(ci+1)%order.length];
+  state.route = 'project'; render(); window.scrollTo(0,0);
+}
+function toggleLang(){ state.lang = state.lang==='zh' ? 'en' : 'zh'; render(); }
+
+function updateProgress(){
+  const rail = document.getElementById('works-rail');
+  const prog = document.getElementById('works-prog');
+  if(!rail || !prog) return;
+  const max = rail.scrollWidth - rail.clientWidth;
+  const r = max>0 ? rail.scrollLeft/max : 0;
+  prog.style.width = (14 + r*86) + '%';
+}
+
+/* =========================================================
+   全域互動(自訂游標 / 滾輪橫向捲動)
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', function(){
+  const cur = document.getElementById('cc-cursor');
+  const lab = document.getElementById('cc-label');
+
+  window.addEventListener('mousemove', function(e){
+    if(cur) cur.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+  }, {passive:true});
+
+  document.addEventListener('mouseover', function(e){
+    const t = e.target.closest('[data-hov]');
+    if(!cur) return;
+    if(t){
+      const txt = t.getAttribute('data-hov');
+      cur.style.width='64px'; cur.style.height='64px'; cur.style.margin='-32px 0 0 -32px';
+      cur.style.background = txt ? '#fa491c' : 'rgba(250,73,28,.18)';
+      if(lab){ lab.textContent = txt || ''; lab.style.opacity = txt ? '1' : '0'; }
+    } else {
+      cur.style.width='10px'; cur.style.height='10px'; cur.style.margin='-5px 0 0 -5px';
+      cur.style.background='#fa491c';
+      if(lab){ lab.style.opacity='0'; lab.textContent=''; }
+    }
+  }, {passive:true});
+
+  window.addEventListener('wheel', function(e){
+    if(state.route!=='works') return;
+    const rail = document.getElementById('works-rail');
+    if(!rail) return;
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+      rail.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+    updateProgress();
+  }, {passive:false});
+
+  document.addEventListener('scroll', function(){ updateProgress(); }, {passive:true, capture:true});
+
+  render();
+});
+</script>
+</body>
+</html>
